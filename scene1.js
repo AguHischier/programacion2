@@ -15,20 +15,27 @@ var Breakout = new Phaser.Class({
 
   preload: function ()
   {
-      this.load.atlas('assets', 'assets/atlasArkanoid.png', 'assets/atlasArkanoid.json');
+    this.load.image("tiles", "assets/tiles.png");
+    this.load.tilemapTiledJSON("World", "assets/tilemap2.json");
+
+    this.load.atlas('assets', 'assets/atlasArkanoid.png', 'assets/atlasArkanoid.json');
   },
 
   create: function ()
   {
 
-    this.starfield =  this.add.tileSprite( 400,350,500, 350, 'assets', 'fondo2').setScale(2);
+    this.map = this.add.tilemap("World");
+    var tileset = this.map.addTilesetImage("tiles", "tiles");
+    this.backgroundLayer = this.map.createStaticLayer("World", tileset);
+
+   // this.starfield =  this.add.tileSprite( 400,350,500, 350, 'assets', 'fondo2').setScale(2);
       //  Enable world bounds, but disable the floor
-      this.physics.world.setBoundsCollision(true, true, true, false);
+    this.physics.world.setBoundsCollision(true, true, true, false);
 
       //  Create the bricks in a 10x6 grid
-      this.bricks = this.physics.add.staticGroup({
+    this.bricks = this.physics.add.staticGroup({
         setScale: {x: 1, y: 1 },
-          key: 'assets', frame: [ /*'bloqueRojo2', 'bloqueVerde2', 'bloqueAmarillo2', 'bloqueGris2',*/ 'bloqueVioleta2' ],
+          key: 'assets', frame: [ 'bloqueRojo2', 'bloqueVerde2', 'bloqueAmarillo2', 'bloqueGris2', 'bloqueVioleta2' ],
           frameQuantity: 8,
           gridAlign: { width: 8, height: 6, cellWidth: 80, cellHeight: 40, x: 100, y: 100 }
         
@@ -74,7 +81,7 @@ var Breakout = new Phaser.Class({
 
       if (this.bricks.countActive() === 0)
       {
-        this.scene.start('scene2');
+        this.resetLevel();
       }
   },
 
