@@ -1,0 +1,482 @@
+{
+	"textures": [
+		{
+			"image": "atlasArkanoid.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1660,
+				"h": 728
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "barra",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 488,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 488,
+						"h": 128
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 488,
+						"h": 128
+					}
+				},
+				{
+					"filename": "bloqueAmarillo",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 488,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueAmarillo2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 546,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueAzeul2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 604,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueAzul",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 662,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueCeleste",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 720,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueCeleste2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 778,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueGris",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 836,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueGris2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 894,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueMarron",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 952,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueMarron2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1010,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueNaranja",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1068,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloquenaranja2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1126,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueRojo",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1184,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueRojo2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1242,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueVerde",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1300,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueVerde2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1358,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueVioleta",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1416,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bloqueVioleta2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 58,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					},
+					"frame": {
+						"x": 1474,
+						"y": 0,
+						"w": 58,
+						"h": 19
+					}
+				},
+				{
+					"filename": "bola",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					},
+					"frame": {
+						"x": 1532,
+						"y": 0,
+						"w": 128,
+						"h": 128
+					}
+				},
+				{
+					"filename": "fondo1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 600
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 600
+					},
+					"frame": {
+						"x": 0,
+						"y": 128,
+						"w": 800,
+						"h": 600
+					}
+				},
+				{
+					"filename": "fondo2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 800,
+						"h": 600
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 800,
+						"h": 600
+					},
+					"frame": {
+						"x": 800,
+						"y": 128,
+						"w": 800,
+						"h": 600
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:ef988af9b0566860cfc79244be145e06:276f6ab234491aafb0fbec26fd27679e:70458db1d874de8da7603be6d7890dd0$"
+	}
+}
