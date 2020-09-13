@@ -1,96 +1,172 @@
 class scene2 extends Phaser.Scene {
     constructor() {
-      super('scene2');
+        super('scene2');
     }
-}
-var Breakout = new Phaser.Class({
 
-  Extends: Phaser.scene2,
 
-initialize:
-
-  function Breakout ()
-  {
-      Phaser.Scene.call(this, { key: 'breakout' });
-
-      this.bricks;
-      this.paddle;
-      this.ball;
-  },
-
-  preload: function ()
-  {
-      this.load.atlas('assets', 'assets/atlasArkanoid.png', 'assets/atlasArkanoid.json');
-  },
-
-  create: function ()
-  {
-
-    this.starfield =  this.add.tileSprite( 400,350,500, 350, 'assets', 'fondo2').setScale(2);
-      //  Enable world bounds, but disable the floor
-      this.physics.world.setBoundsCollision(true, true, true, false);
-
-      //  Create the bricks in a 10x6 grid
-      this.bricks = this.physics.add.staticGroup({
-        setScale: {x: 1, y: 1 },
-          key: 'assets', frame: [ /*'bloqueRojo2', 'bloqueVerde2', 'bloqueAmarillo2', 'bloqueGris2',*/ 'bloqueVioleta2' ],
-          frameQuantity: 8,
-          gridAlign: { width: 8, height: 6, cellWidth: 80, cellHeight: 40, x: 100, y: 100 }
+    
+    preload() {
+        this.load.image('ground_1x1'    , 'assets/ground_1x1.png');
         
-      });
+        
+        
+        this.load.atlas('assets', './assets/atlasArkanoid.png', './assets/atlasArkanoid.json');
+
+
+        this.load.tilemapTiledJSON('map', 'assets/tile.json');
+      
+    }
+
+    create() {
+       // creacion del mapa
+        map = this.make.tilemap({ key: 'map' });
+        var groundTiles = map.addTilesetImage('ground_1x1');
+        
+        
+        map.createDynamicLayer('Background Layer', groundTiles, 0, 0);
+        var groundLayer  = map.createDynamicLayer('Ground Layer', groundTiles, 0, 0);        
             
+        var mapLayer   = map.createDynamicLayer('map Layer', groundTiles, 0, 0);        
+      
+        mapLayer.setCollisionBetween(1, 25);
+        groundLayer.setCollisionBetween(1, 25);
 
-      this.ball = this.physics.add.image(400, 525, 'assets', 'bola').setCollideWorldBounds(true).setBounce(1).setScale(.2);
-      this.ball.setData('onPaddle', true);
+        this.physics.world.setBoundsCollision(true, true, true, false);
 
-      this.paddle = this.physics.add.image(400, 550, 'assets', 'barra').setImmovable().setScale(0.2);
 
-      //  Our colliders
-      this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
-      this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
+        // grupo de bloques
+        this.bricks = this.physics.add.staticGroup({
+            setScale: {x: 1, y: 1 },
+              key: 'assets', frame: [ 'bloqueRojo', 'bloqueVerde', 'bloqueAmarillo', 'bloqueGris', 'bloqueVioleta' ],
+              frameQuantity: 8,
+              gridAlign: { width: 8, height: 6, cellWidth: 80, cellHeight: 40, x: 135, y: 100 }
+            
+          });
 
-      //  Input events
-      this.input.on('pointermove', function (pointer) {
+          // agregamos la bola y paleta
+        this.ball = this.physics.add.image(400, 545, 'assets', 'bola').setCollideWorldBounds(true).setBounce(1).setScale(.2);
+        this.ball.setData('onPaddle', true);
 
-          //  Keep the paddle within the game
-          this.paddle.x = Phaser.Math.Clamp(pointer.x, 52, 748);
+        this.paddle = this.physics.add.image(400, 575, 'assets', 'barra').setImmovable().setScale(0.2);
+        
 
-          if (this.ball.getData('onPaddle'))
-          {
-              this.ball.x = this.paddle.x;
-          }
+         //  Colisiones
+         this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
+         this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
+         this.physics.add.collider(this.ball, mapLayer);
+         this.physics.add.collider(this.ball, groundLayer);
+         this.physics.add.collider(this.paddle, groundLayer); // NO ME ANDA!
 
-      }, this);
 
-      this.input.on('pointerup', function (pointer) {
+         //  Input events
+         
+         this.input.on('pointermove', function (pointer) {
 
-          if (this.ball.getData('onPaddle'))
-          {
-              this.ball.setVelocity(-75, -300);
-              this.ball.setData('onPaddle', false);
-          }
+        //  Keep the paddle within the game
+        this.paddle.x = Phaser.Math.Clamp(pointer.x, 52, 748);
 
-      }, this);
-  },
 
-  hitBrick: function (ball, brick)
+        // Comprobamos si la pelota esta en la paleta y hacemos que la siga
+        if (this.ball.getData('onPaddle'))
+        {
+            this.ball.x = this.paddle.x;
+        }
+
+    }, this);
+
+    this.input.on('pointerup', function (pointer) {
+
+        if (this.ball.getData('onPaddle'))
+        {
+            this.ball.setVelocity(-75, -300);
+            this.ball.setData('onPaddle', false);
+        }
+
+    }, this);
+
+
+
+    // Score
+    text = new puntaje ({scene:this, x:44, y: 30})
+    text2 = new vidas ({scene:this, x:600, y: 30})
+    text.setText('Puntaje: ' + score);
+   
+    }
+
+  
+    update()
+    {
+
+        // Comprobamos si la pelota se va del mapa
+     if (this.ball.y > 600)
+     {
+         this.resetBall();
+         scorevidas--;
+         text2.setText('Vidas: ' + scorevidas);
+     }
+
+     // Cuando las vidas llegan a 0, se resetea el nivel
+    if (scorevidas === 0){
+        
+        this.resetBall();
+
+      this.bricks.children.each(function (brick) {
+
+          brick.enableBody(false, 0, 0, true, true);
+
+      });
+      scorevidas = 3;
+      text2.setText('Vidas: ' + scorevidas);
+      
+      text.setText('Puntaje: ' + score);
+    }
+
+    }
+    
+    
+
+
+
+// Funcion para romper el bloque
+ hitBrick (ball, assets)
   {
-      brick.disableBody(true, true);
+      assets.disableBody(true, true);
 
+
+      this.bricks.children.each(function (brick) {
+
+        
+
+    });
+      
+      
+     score+=10; 
+    
+     text.setText('Puntaje: ' + score);
+
+     // Cuando queden 20 bloques, sumamos una vida
+
+      if (this.bricks.countActive() === 20)
+      {
+        scorevidas++;
+        text2.setText('Vidas: ' + scorevidas);
+      }
+
+      // Cuando no quedan bloques pasamos a la escena 1 llamando a la funcion win
       if (this.bricks.countActive() === 0)
       {
-        this.scene.start('scene2');
+        this.win();
       }
-  },
-
-  resetBall: function ()
+  }
+// Funcion de resetear la bola
+ resetBall ()
   {
       this.ball.setVelocity(0);
-      this.ball.setPosition(this.paddle.x, 525);
+      this.ball.setPosition(this.paddle.x, 545);
       this.ball.setData('onPaddle', true);
-  },
-
-  resetLevel: function ()
+  }
+// Funcion de resetear el nivel
+ resetLevel ()
   {
       this.resetBall();
 
@@ -99,9 +175,9 @@ initialize:
           brick.enableBody(false, 0, 0, true, true);
 
       });
-  },
-
-  hitPaddle: function (ball, paddle)
+  }
+// Funcion para comprobar en que parte de la paleta pega la bola
+ hitPaddle(ball, paddle)
   {
       var diff = 0;
 
@@ -123,28 +199,17 @@ initialize:
           //  Add a little random X to stop it bouncing straight up!
           ball.setVelocityX(2 + Math.random() * 8);
       }
-  },
-
-  update: function ()
-  {
-      if (this.ball.y > 600)
-      {
-          this.resetBall();
-      }
   }
 
-});
-
-var config = {
-  type: Phaser.WEBGL,
-  width: 800,
-  height: 600,
-  parent: 'phaser-example',
-  scene: [ Breakout ],
-  physics: {
-      default: 'arcade',
-        arcade: {
-          debug: false
+// Funcion de ganar, resetea puntaje y vidas
+  win(){
+    scorevidas = 3;
+    text2.setText('Vidas: ' + scorevidas);
+    score = 0;
+    text.setText('Puntaje: ' + score);
+    this.scene.start('scene1');
   }
+
+
+  
 }
-};
